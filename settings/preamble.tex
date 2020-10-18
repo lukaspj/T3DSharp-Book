@@ -1,0 +1,92 @@
+%% PREAMBLE LaTeX file, DO NOT TOUCH
+%% This file should only be edited by someone experienced with LaTeX, 
+%% if you don't know what you're doing then I recommend you stay your hand.
+%% All content is placed in the ``sections'' folder, this is probably where 
+%% you want to go.
+
+%% Setup the document to use font-size 12 and be of type 'book'.
+\documentclass[12pt]{book}
+
+%% Use UTF8 encoding.
+\usepackage[utf8]{inputenc}
+
+%% Use 8-bit encoding that has 256 glyphs, something something accents.
+\usepackage[T1]{fontenc}
+
+%% Set document language to danish.
+%% If you intend to write an english book, you probably don't have to do any language-specific settings.
+% \input{settings/danish}
+
+%% blindtext lets us generate place-holder ``lorem-ipsum'' text.
+\usepackage{blindtext}
+
+%% xcolor allows to create named colours.
+\usepackage[svgnames]{xcolor}
+
+%% tikz is used to draw various figures and graphs.
+\usepackage{tikz}
+
+%% imakeidx let us create an overview of references to various subjects in the book.
+%% It provides an index similar to what you would find at the end of other books.
+\usepackage{imakeidx}
+\makeindex % Tell LaTeX to generate the files that are needed for the index.
+
+%% This is the color that is used for the theme throughout this book which the 
+%% ``settings'' files use.
+\definecolor{theme-color}{RGB}{203,0,0}
+
+%% This controls all settings related to code-highlighting.
+\input{settings/code}
+
+%% This controls all settings related to macros of notes in the margin.
+\input{settings/margin-notes}
+
+%% This fille contains the definition of ``content-boxes'' such as ``exercise''
+%% or ``example''.
+\input{settings/content-boxes}
+
+%% This file contains settings for figures and tables.
+\input{settings/figures-and-tables}
+
+%% This file, which is rather ugly code-wise, defines the look of the book.
+%% If you remove this file, the document would look like a standard LaTeX document.
+\input{settings/book-style}
+
+% A small file to define \todo macros.
+\input{settings/todo}
+
+%% hyperref helps us create links and references in our document.
+%% Due to an issue with the timing of set-up of hyperref in settings/book-style 
+%% and the more general inclusion of this library here, we have to put this 
+%% after the book-style document.
+\usepackage{hyperref}
+
+%% Insert a xspace after \LaTeX, this makes sure that a space is placed after 
+%% \LaTeX when it makes sense.
+\let\oldlatex\LaTeX
+\renewcommand{\LaTeX}{\oldlatex\xspace}
+
+%% AMS-Math: has macros for different mathematical notations.
+\usepackage{amsmath}
+
+%% PDG Pages: This is used in order to include pages from other PDF's, this is for
+%% example useful if the frontpage is designed in InDesign or similar.
+\usepackage{pdfpages}
+
+%% This package allows us to create FloatBarriers, so we can prevent figures to 
+%% float too far away from their content. LaTeX can be rather punishing if you have 
+%% a section that is heavy on figures compared to the amount of text.
+\usepackage{placeins}
+
+%% Support QR codes, in draftmode we fake it to reduce compile-times.
+\ifdraftmode
+	\usepackage[draft]{qrcode}
+\else
+	\usepackage{qrcode}
+\fi
+
+%% Helper command, that can insert empty pages until we hit a left-page.
+\newcommand*\cleartoleftpage{%
+	\clearpage
+	\ifodd\value{page}\hbox{}\newpage\fi
+}

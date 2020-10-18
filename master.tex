@@ -1,0 +1,105 @@
+% !TeX spellcheck = en_GB
+
+%% MAIN LaTeX file, DO NOT TOUCH
+%% Denne fil skal ikke ændres af andre end LaTeX guruerne. Du skal holde
+%% nallerne væk, og ændre i den fil der ligger i den undermappe af ``sections''
+%% som du skal bruge.
+
+%% Designet og strukturen i dette LaTeX dokument er primært udarbejdet af Lukas 
+%% Jørgensen. Jeg er lidt stolt af den, og har arbejdet meget på den så 
+%% behandl den pænt!
+%% Den er baseret på ``The Legrand Orange Book'', men er modificeret kraftigt.
+%% Er der nogen spørgsmål, eller tvivl, til bogen og hvordan LaTeX koden fungerer,
+%% så kan jeg formentlig findes med en Google søgning efter ``LukasPJ''. 
+%% I værste fald, så prøv lpjoergensen@gmail.com.
+%% Sæt dokumentet til draft-mode. Dette gør to-do's synlige, viser alle elementer i 
+%% glossary og tilføjer ``example'' kapitlet.
+\newif\ifdraftmode
+\draftmodetrue
+
+%% Dette indlæser vores ``preamble'' som er den fil der sørger for opsætningen
+%% af vores dokument.
+\input{settings/preamble}
+
+\input{glossary}
+
+%% Start with a ``chapter 0'' that explains the elements in the book.
+\setcounter{chapter}{-1}
+
+%% This is our ``main-dokument''. It provides the general structure of the book.
+\begin{document}
+	
+	\graphicspath{{figures/}}
+	%% Insert front-page.
+	\input{title-page}
+	
+	%% Insert author page.
+	\input{author-page}
+	
+	%% Insert preface.
+	% \input{preface}
+
+	%% Print TOC
+	\tableofcontents
+
+	%% From here, the actual content begins. We use ``graphicspath'' to 
+	%% isolate the different subjects figures from each other, so finding
+	%% and maintaining the figures for a chapter is easier and to avoid 
+	%% accidentally deleting figures that are used in other places.
+	%
+	%% The filestructure is meant to be:
+	%% sections/<part>/<chapter>/chapter.tex
+	%% sections/<part>/<chapter>/figures/
+	
+	\graphicspath{{sections/introduction/figures/}}
+	\input{sections/introduction/chapter}
+
+
+	\part{Introduction to Torque3D}
+	%% If we work in draft mode, then we include an example page that shows
+	%% how some of the different elements in this book works.
+	\ifdraftmode
+		\graphicspath{{sections/manual/example/figures/}}
+		\input{sections/manual/example/chapter}
+	\fi
+	
+	\graphicspath{{sections/t3d-intro/intro/figures/}}
+	\input{sections/t3d-intro/intro/chapter}
+	
+	\graphicspath{{sections/t3d-intro/made-with/figures/}}
+	\input{sections/t3d-intro/made-with/chapter}
+	
+	\graphicspath{{sections/t3d-intro/setup/figures/}}
+	\input{sections/t3d-intro/setup/chapter}
+	
+	\part{The Coin Collection Game}
+	
+	\graphicspath{{sections/coin-collection-game/basics/figures/}}
+	\input{sections/coin-collection-game/basics/chapter}
+	
+	\graphicspath{{sections/coin-collection-game/simple-effects/figures/}}
+	\input{sections/coin-collection-game/simple-effects/chapter}
+	
+	\graphicspath{{sections/coin-collection-game/simple-multiplayer/figures/}}
+	\input{sections/coin-collection-game/simple-multiplayer/chapter}
+	
+	\graphicspath{{sections/coin-collection-game/simple-gui/figures/}}
+	\input{sections/coin-collection-game/simple-gui/chapter}
+	
+	\graphicspath{{figures/}}
+	
+	%% Insert glossary, i.e. a list of all the words that have been inserted with 
+	%% the \gls macros.
+	\ifdraftmode
+		\glsaddall
+	\fi
+	\printglossary
+	
+	%% Insert the index, an overview of topics covered by the book. You can add
+	%% elements to the index with the \index macro.
+	\input{index}
+	
+	%% Insert the last page, this is meant to be the back-side of the cover on the book.
+	% \input{butt-page}
+
+\end{document}

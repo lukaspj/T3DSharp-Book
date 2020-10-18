@@ -1,0 +1,45 @@
+%% TODO LaTeX file, DO NOT TOUCH
+%% This file should only be edited by someone experienced with LaTeX, 
+%% if you don't know what you're doing then I recommend you stay your hand.
+%% All content is placed in the ``sections'' folder, this is probably where 
+%% you want to go.
+
+\newtheoremstyle{redbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\sffamily\color{red}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{red}\thmname{#1}%\@ifnotempty{#1}{}\@upn{#2}}%
+	% Theorem text (e.g. Theorem 2.1)
+	\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}}
+
+\theoremstyle{redbox}
+\newtheorem{todoT}{TODO}
+
+% Exercise box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=red!10,
+linecolor=red,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{todoBox}
+
+\newcommand{\todo}[1]{
+	\ifdraftmode
+	\begin{todoBox}\begin{todoT}
+		#1
+	\end{todoT}\end{todoBox}
+	\fi
+}

@@ -1,0 +1,28 @@
+%% MARGINNOTE LaTeX file, DO NOT TOUCH
+%% This file should only be edited by someone experienced with LaTeX, 
+%% if you don't know what you're doing then I recommend you stay your hand.
+%% All content is placed in the ``sections'' folder, this is probably where 
+%% you want to go.
+
+\usepackage{marginnote}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+
+\newcommand{\marginfigure}[2]{
+	\marginnote{
+		\begin{center}
+			\includegraphics[width=\marginparwidth]{#1}
+			\captionof{figure}{#2}
+		\end{center}
+	}[0cm]
+}
+
+\newcommand{\bottomfigure}[2]{
+	\begin{figure*}[b]
+		\centering
+		\includegraphics[width=\textwidth,height=2cm,keepaspectratio]{#1}
+		\caption{#2}
+	\end{figure*}
+}
